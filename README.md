@@ -174,7 +174,7 @@ $$\text{ES}_{t+1, \alpha} = -(\mu_{t+1} - \sigma_{t+1} \cdot \text{ES}_\alpha(z)
 ### 5. Anomaly & Change-Point Detection (Isolation Forest & Page-CUSUM)
 
 1. **Multivariate Isolation Forest (300 Trees):**
-   - Ingests a 6-dimensional feature vector ($r_t, \ln \text{RV}_{20}, \text{vol\_ratio}_{5/20}, \text{drawdown}_{252}, \text{momentum}_{20}, \ln \text{Parkinson}_{20}$).
+   - Ingests a 6-dimensional feature vector: returns ($r_t$), log volatility ($\ln \text{RV}_{20}$), volatility ratio (`vol_ratio_5_20`), trailing drawdown (`drawdown_252`), momentum (`momentum_20`), and log Parkinson volatility (`ln_parkinson`).
    - Fitted on scaled training data. Raw anomaly scores are mapped to empirical percentiles via the training set ECDF. Flags trigger above the 99th percentile.
 
 2. **Sequential Page-CUSUM Shock Detection:**
@@ -192,12 +192,12 @@ The headline **Market Stress Index (MSI)** synthesizes multi-dimensional risk si
 
 $$\text{MSI}_t = 100 \cdot \sum_{i=1}^M w_i \cdot c_{i, t}$$
 
-where components $c_{i, t} \in [0, 1]$ represent:
-1. $P(\text{Stress} \mid x_{1..t})$ — Forward-filtered HMM Stress probability.
-2. $\text{ECDF}_{\text{train}}(\text{RV}_{20})$ — 20-day realized volatility quantile.
-3. $\text{ECDF}_{\text{train}}(\text{DD}_{252})$ — 1-year trailing drawdown quantile.
-4. $\text{ECDF}_{\text{train}}(\text{IF\_Score})$ — Isolation Forest anomaly severity.
-5. Cross-asset correlation stress (when multi-asset data is active).
+where each component $c_{i, t} \in [0, 1]$ is a normalized risk indicator:
+1. **$P(\text{Stress} \mid x_{1..t})$** — Causal forward-filtered HMM Stress state probability.
+2. **$\text{Quantile}(\text{RV}_{20})$** — 20-day realized volatility percentile (train-fit ECDF).
+3. **$\text{Quantile}(\text{DD}_{252})$** — 1-year trailing drawdown percentile (train-fit ECDF).
+4. **$\text{Quantile}(\text{Anomaly Score})$** — Isolation Forest outlier severity (train-fit ECDF).
+5. **Cross-Asset Correlation Stress** — Trailing correlation shock indicator (when active).
 
 #### Calibrated Risk Bands
 - **$[0, 25)$ Normal (Blue/Green):** Low volatility, strong market trend, minimal tail risk.
