@@ -1,0 +1,68 @@
+{
+  "^NSEI": {
+    "slug": "NSEI",
+    "parquet_file": "NSEI.parquet",
+    "sha256": "0c7b0f7f2cc53925aa84de7b09f15246a344c6569d68af85a9d119f187e96877",
+    "rows": 4675,
+    "first_date": "2007-09-17 00:00:00",
+    "last_date": "2026-10-07 00:00:00",
+    "saved_at": "2026-10-07T12:05:08.776644+00:00",
+    "python_version": "3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)]",
+    "pandas_version": "3.0.3"
+  },
+  "^NSEBANK": {
+    "slug": "NSEBANK",
+    "parquet_file": "NSEBANK.parquet",
+    "sha256": "454d926bda4badd37f20a0346529da2cd26f96f7d5a5a36e6e27f609708e31f1",
+    "rows": 4690,
+    "first_date": "2007-09-17 00:00:00",
+    "last_date": "2026-10-07 00:00:00",
+    "saved_at": "2026-10-07T12:05:09.987454+00:00",
+    "python_version": "3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)]",
+    "pandas_version": "3.0.3"
+  },
+  "^INDIAVIX": {
+    "slug": "INDIAVIX",
+    "parquet_file": "INDIAVIX.parquet",
+    "sha256": "dd52d4c7dae459a15673b36c212817ddcf22010f13113be0fab11d3a545c2beb",
+    "rows": 4556,
+    "first_date": "2008-03-03 00:00:00",
+    "last_date": "2026-10-07 00:00:00",
+    "saved_at": "2026-10-07T12:05:10.960058+00:00",
+    "python_version": "3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)]",
+    "pandas_version": "3.0.3"
+  },
+  "^GSPC": {
+    "slug": "GSPC",
+    "parquet_file": "GSPC.parquet",
+    "sha256": "1024bb8e2a3e62fa3828b04968d591090502d8a81bb3b68a4dd4bd3528db79f1",
+    "rows": 4803,
+    "first_date": "2007-09-04 00:00:00",
+    "last_date": "2026-10-06 00:00:00",
+    "saved_at": "2026-10-07T12:05:11.935622+00:00",
+    "python_version": "3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)]",
+    "pandas_version": "3.0.3"
+  },
+  "INR=X": {
+    "slug": "INR_X",
+    "parquet_file": "INR_X.parquet",
+    "sha256": "17b56fee6397a62308ba0814604afa59dc0f2e9ae30e6247da60ab44690c4f01",
+    "rows": 4949,
+    "first_date": "2007-09-03 00:00:00",
+    "last_date": "2026-10-07 00:00:00",
+    "saved_at": "2026-10-07T12:05:12.890508+00:00",
+    "python_version": "3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)]",
+    "pandas_version": "3.0.3"
+  },
+  "GC=F": {
+    "slug": "GC_F",
+    "parquet_file": "GC_F.parquet",
+    "sha256": "dcbe04193544a098e4cda4a79c448c8acddfd290427741369c6e647efa8e0d2b",
+    "rows": 4804,
+    "first_date": "2007-09-04 00:00:00",
+    "last_date": "2026-10-07 00:00:00",
+    "saved_at": "2026-10-07T12:05:13.700417+00:00",
+    "python_version": "3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)]",
+    "pandas_version": "3.0.3"
+  }
+}

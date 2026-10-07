@@ -1,0 +1,14 @@
+{
+  "include": [
+    "src",
+    "tests",
+    "run_pipeline.py"
+  ],
+  "extraPaths": [
+    "."
+  ],
+  "venvPath": ".",
+  "venv": ".venv",
+  "reportMissingImports": "warning",
+  "pythonVersion": "3.10"
+}

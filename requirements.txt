@@ -1,0 +1,31 @@
+# Core Numerical & Time-Series Modeling
+numpy>=2.0.0
+pandas>=2.2.0
+scipy>=1.14.0
+statsmodels>=0.14.0
+arch>=7.0.0
+scikit-learn>=1.5.0
+hmmlearn>=0.3.2
+ruptures>=1.1.9
+
+# Data Ingestion & Storage
+yfinance==1.7.0
+pyarrow>=16.0.0
+requests>=2.31.0
+
+# Visualization & Interactive Dashboard
+plotly>=5.22.0
+streamlit>=1.36.0
+matplotlib>=3.9.0
+seaborn>=0.13.0
+
+# Configuration, Utilities & Reporting
+pyyaml>=6.0.0
+pydantic>=2.7.0
+typing_extensions>=4.10.0
+tabulate>=0.9.0
+
+# Testing & Verification
+pytest>=8.0.0
+pytest-cov>=5.0.0
+scipy-stubs>=1.14.0

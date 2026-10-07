@@ -1,0 +1,113 @@
+# Default Configuration for Market Regime Detection & Tail-Risk Forecasting
+
+data:
+  primary_ticker: "^NSEI"
+  optional_tickers:
+    - "^NSEBANK"
+    - "^INDIAVIX"
+    - "^GSPC"
+    - "INR=X"
+    - "GC=F"
+  start_date: "2007-09-01"
+  end_date: null  # null means latest available
+  auto_adjust: false
+  availability_lags:
+    "^NSEI": 0
+    "^NSEBANK": 0
+    "^INDIAVIX": 0
+    "^GSPC": 1
+    "INR=X": 1
+    "GC=F": 1
+  min_volume_coverage: 0.90
+  max_ffill_limit: 3
+
+features:
+  annualization_factor: 15.874507866387544 # sqrt(252)
+  rv_windows: [5, 20, 60]
+  parkinson_window: 20
+  downside_window: 20
+  drawdown_window: 252
+  momentum_windows: [20, 60]
+  sma_short: 50
+  sma_long: 200
+  vol_z_window: 252
+  volume_z_window: 60
+  corr_window: 60
+  vix_change_window: 20
+
+models:
+  seed: 42
+  initial_train_days: 1260
+  refit_cadence: 63
+  arima_reselect_cadence: 252
+  dev_end_date: "2014-12-31"
+  test_start_date: "2015-01-01"
+
+  arima:
+    p_max: 3
+    q_max: 3
+    include_constant: true
+    criterion: "bic"
+
+  garch:
+    p: 1
+    q: 1
+    o: 0  # 1 for GJR-GARCH
+    dist: "t"  # normal, t, skewed-t
+
+  hmm:
+    k_list: [2, 3, 4, 5]
+    default_k: 3
+    covariance_type: "full"
+    n_init: 10
+    min_covar: 0.001
+    min_occupancy: 0.02
+    features: ["return", "ln_rv20", "drawdown"]
+
+  isolation_forest:
+    n_estimators: 300
+    contamination: "auto"
+    percentile_threshold: 0.99
+    features:
+      - "return"
+      - "ln_rv20"
+      - "vol_ratio_5_20"
+      - "drawdown_252"
+      - "momentum_20"
+      - "ln_parkinson"
+
+  changepoints:
+    pelt:
+      model: "normal"
+      min_size: 40
+      penalty_multiplier: 3.0  # c * ln(n)
+    cusum:
+      k: 0.5
+      h: 5.0
+
+  evt:
+    q_u: 0.90
+    q_u_sensitivity: [0.85, 0.95]
+    min_exceedances: 50
+    risk_quantiles: [0.95, 0.99]
+
+stress_index:
+  headline_method: "W-EQ"
+  methods: ["W-EQ", "W-PCA", "W-LOGIT"]
+  bands:
+    normal: [0.0, 25.0]
+    elevated: [25.0, 50.0]
+    high_risk: [50.0, 75.0]
+    severe: [75.0, 100.0]
+  alarm_threshold_primary: 50.0
+  alarm_threshold_secondary: 75.0
+
+backtest:
+  event_h: 10
+  event_x: 0.05
+  refractory_period: 20
+  spell_max_gap: 5
+  sensitivity_h: [5, 10, 20]
+  sensitivity_x: [0.03, 0.05, 0.07]
+  bootstrap_resamples: 1000
+  bootstrap_block_size: 20
